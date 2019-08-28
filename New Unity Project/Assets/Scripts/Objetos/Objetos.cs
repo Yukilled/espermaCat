@@ -39,12 +39,19 @@ public class Objetos : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D other)
     {
-        cogerObjeto = true;
+        if (other.gameObject.tag == "Player")
+        {
+            cogerObjeto = true;
+        }
     }
-    public void OnTriggerExit2D(Collider2D collision)
+       
+    public void OnTriggerExit2D(Collider2D other)
     {
-        cogerObjeto = false;
-        objetoCogido = false;
-        //quitar UI de objeto cogido
+        if (other.gameObject.tag == "Player")
+        {
+            cogerObjeto = false;
+            objetoCogido = false;
+            //quitar UI de objeto cogido
+        }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UsarObjetos : MonoBehaviour
 {
-    public Animator esperma;
+    public GameObject esperma;
     public float tiempoAnim;
     CogerObjetos co;
     void Start()
@@ -20,7 +20,7 @@ public class UsarObjetos : MonoBehaviour
             if (co.GetBoolEsperma())
             {
                 Debug.Log("UsoEsperma");
-                esperma.SetBool("iniciarCarga", true);
+                esperma.GetComponent<Animator>().SetBool("iniciarCarga", true);
                 Invoke("AcabarAnimacion", tiempoAnim);
             }
         }
@@ -28,7 +28,8 @@ public class UsarObjetos : MonoBehaviour
     }
     void AcabarAnimacion()
     {
-        esperma.SetBool("iniciarCarga", false);
+        esperma.GetComponent<Animator>().SetBool("iniciarCarga", false);
+        esperma.SetActive(false);
     }
 
     void InstanciarFluidos()

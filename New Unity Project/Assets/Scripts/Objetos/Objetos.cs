@@ -30,9 +30,9 @@ public class Objetos : MonoBehaviour
             co = other.GetComponent<CogerObjetos>();
             switch (this.gameObject.tag)
             {
-                case "Esperma": co.SetBoolEsperma(true); break;
-                case "Carne": co.SetBoolCarne(true); break;
-                case "BolaDePelo": co.SetBoolBolaDePelo(true); break;
+                case "Esperma": co.SetBoolEsperma(true, this.gameObject); break;
+                case "Carne": co.UsarBolaCarne(this.gameObject); break;
+                case "BolaDePelo": co.UsarBolaPelo(this.gameObject); break;
                 case "Fluido": co.SetBoolFluido(true); break;
             }
         }

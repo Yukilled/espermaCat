@@ -23,6 +23,8 @@ public class AtaqueEnemigo : MonoBehaviour
             Debug.Log("Hola");
             PlayerHealth player = other.GetComponent<PlayerHealth>();
             player.PerderVida(daño);
+            
+            
         }
     }
 }

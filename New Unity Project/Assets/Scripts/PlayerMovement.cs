@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if(rigidBody2D.velocity.x<maxSpeed && rigidBody2D.velocity.y < maxSpeed){
+        if(Mathf.Abs(rigidBody2D.velocity.x)<maxSpeed && Mathf.Abs(rigidBody2D.velocity.y) < maxSpeed){
         rigidBody2D.AddForce(new Vector2(xinput, yinput));
         }
     }

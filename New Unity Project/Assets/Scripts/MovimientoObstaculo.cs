@@ -8,8 +8,8 @@ public class MovimientoObstaculo : MonoBehaviour
     public GameObject puntoB;
     GameObject target;
     Rigidbody2D body;
-    float velX;
-    float velY;
+    public float fuerza;
+   
     public float distancia;
     // Start is called before the first frame update
     void Start()
@@ -35,5 +35,13 @@ public class MovimientoObstaculo : MonoBehaviour
     void FixedUpdate()
     {
         body.AddForce(new Vector2(target.transform.position.x-transform.position.x,target.transform.position.y-transform.position.y));
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.otherRigidbody.AddForce(new Vector2(other.transform.position.x-this.transform.position.x,other.transform.position.y-this.transform.position.y).normalized*fuerza);
+        }
     }
 }

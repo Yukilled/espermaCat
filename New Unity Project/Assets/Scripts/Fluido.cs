@@ -18,7 +18,7 @@ public class Fluido : MonoBehaviour
         
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
@@ -31,6 +31,7 @@ public class Fluido : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            Debug.Log("SALIAADFHIDAHFSDHFISDHSG");
             PlayerMovement player = other.GetComponent<PlayerMovement>();
             player.SalirFluido();
         }

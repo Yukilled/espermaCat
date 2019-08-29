@@ -5,52 +5,50 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     // Start is called before the first frame update
-   public Rigidbody2D rigidBody2D;
-    
-    public int speed;
-    float xinput;
-    float yinput;
-    float velModificadorX;
-    float velModificadorY;
+    public Rigidbody2D rigidBody2D;
+    public float speed;
+
+    AudioSource sonido;
+    float inputX, inputY;
+    float speedAux;
     public int maxSpeed;
     void Start()
     {
         rigidBody2D = this.GetComponent<Rigidbody2D>();
-        
+        sonido = this.gameObject.GetComponent<AudioSource>();
+        speedAux = 5f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        xinput = Input.GetAxis("Horizontal");
-        yinput = Input.GetAxis("Vertical");
+        Debug.Log("Velocidad"+speed);
+        if (Mathf.Abs(rigidBody2D.velocity.x) < maxSpeed)
+        {
+            inputX = Input.GetAxis("Horizontal");
+            sonido.Play();
+        }
+        if (Mathf.Abs(rigidBody2D.velocity.y) < maxSpeed)
+        {
+            inputY = Input.GetAxis("Vertical");
+            sonido.Play();
+        }
+
+        
     }
     void FixedUpdate()
     {
-        if(Mathf.Abs(rigidBody2D.velocity.x)<maxSpeed && Mathf.Abs(rigidBody2D.velocity.y) < maxSpeed){
-        rigidBody2D.AddForce(new Vector2(xinput+velModificadorX, yinput+velModificadorY));
-        }
+        rigidBody2D.velocity=new Vector2(inputX*speed, inputY * speed);
     }
     public void EntrarFluido(float modificador)
     {
-        if (xinput < 0)
-            velModificadorX = -modificador;
-        else if (xinput > 0)
-            velModificadorX = modificador;
-        else
-            velModificadorX = 0;
-
-        if (yinput < 0)
-            velModificadorY = -modificador;
-        else if (yinput > 0)
-            velModificadorY = modificador;
-        else
-            velModificadorY = 0;
+        speed *=modificador;
     }
     public void SalirFluido()
     {
-        velModificadorX = 0;
-        velModificadorY = 0;
+      
+        speed = 5f;
+        Debug.Log("Actualizacionvel" + speed);
     }
     
 

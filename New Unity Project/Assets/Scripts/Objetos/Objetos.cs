@@ -5,6 +5,7 @@ using UnityEngine;
 public class Objetos : MonoBehaviour
 {
     CogerObjetos co;
+    VidaEnemigo vd;
     bool cogerObjeto, objetoCogido;
     private void Update()
     {
@@ -20,15 +21,14 @@ public class Objetos : MonoBehaviour
 
     public void OnTriggerStay2D(Collider2D other)
     {
-        
-        //Poner IU de coger Objeto
 
-        if (objetoCogido) //si el jugador ha cogido el objeto
+        //Poner IU de coger Objeto
+        co = other.GetComponent<CogerObjetos>();
+        if (objetoCogido && co!=null) //si el jugador ha cogido el objeto
         {
             Debug.Log("Pulsado E");
             //quitar UI de coger objeto
-            co = other.GetComponent<CogerObjetos>();
-            switch (this.gameObject.tag)
+           switch (this.gameObject.tag)
             {
                 case "Esperma": co.SetBoolEsperma(true, this.gameObject); break;
                 case "Carne": co.UsarBolaCarne(this.gameObject); break;
@@ -42,6 +42,13 @@ public class Objetos : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             cogerObjeto = true;
+        }
+
+        vd = other.GetComponent<VidaEnemigo>();
+
+        if (vd!=null)
+        {
+            vd.PerderVida(1);
         }
     }
        

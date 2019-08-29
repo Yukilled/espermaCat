@@ -6,6 +6,7 @@ public class PlayerHealth : MonoBehaviour
 {
 
     public float health;
+    public float maxHealth;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,10 +21,13 @@ public class PlayerHealth : MonoBehaviour
 
     public void PerderVida(float modificacion)
     {
+
         health = health - modificacion;
+        Debug.Log(health);
     }
     public void GanarVida(float vida)
     {
+        if(health + vida<=maxHealth)
         health = health + vida;
     }
 }

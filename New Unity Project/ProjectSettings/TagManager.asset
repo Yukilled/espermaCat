@@ -8,6 +8,7 @@ TagManager:
   - Carne
   - BolaDePelo
   - Fluido
+  - Enemigo
   layers:
   - Default
   - TransparentFX
